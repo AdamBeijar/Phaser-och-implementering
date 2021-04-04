@@ -12,8 +12,11 @@ var loadState = {
         game.load.image("background", "assets/img/background.png")
         game.load.image("enemy", "assets/img/enemy.png")
         game.load.image("coin", "assets/img/coin.png")
-        game.load.image("Hwall", "assets/img/HorizontalWall.png")
-        game.load.image("Vwall", "assets/img/VerticalWall.png")
+        game.load.image("wallH", "assets/img/HorizontalWall.png")
+        game.load.image("wallV", "assets/img/VerticalWall.png")
+        game.load.audio("coinSound", ["assets/sound/coin.mp3", "assets/sound/coin.ogg"])
+        game.load.audio("deathSound", ["assets/sound/death.mp3", "assets/sound/death.ogg"])
+        game.load.audio("jumpSound", ["assets/sound/Jump.mp3", "assets/sound/Jump.ogg"])
     },
     create: function() {
         game.state.start('menu');

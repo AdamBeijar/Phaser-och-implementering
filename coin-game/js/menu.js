@@ -3,6 +3,7 @@ var muteButton;
 var currentFrame = 0;
 var menuState = {
     create: function() {
+        this.mute = false
         var menuLabel = game.add.text(game.world.centerX, 30, 
             'menu..', {font: '30px Arial', fill: '#ffffff'});
         menuLabel.anchor.setTo(0.5, 0.5);
@@ -19,12 +20,14 @@ var menuState = {
         game.state.start('play');
     },
     muteAudio: function () {
-        if (currentFrame == 0){
+        if (currentFrame === 0){
             currentFrame = 1
             muteButton.setFrames(1)
-        } else if(currentFrame == 1){
+            this.mute = true
+        } else if(currentFrame === 1){
             currentFrame = 0
             muteButton.setFrames(0)
+            this.mute = false
         }
     }
 };
