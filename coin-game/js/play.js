@@ -34,6 +34,9 @@ var playState = {
         this.jumpfx = game.add.audio("jumpSound")
         this.coinsfx = game.add.audio("coinSound")
         this.deathfx = game.add.audio("deathSound")
+        emitter = game.add.emitter(0, 0, 100);
+        emitter.makeParticles('explosion');
+        emitter.gravity = 200;
     },
     update: function() {
         game.physics.arcade.collide(this.player, this.walls);
@@ -42,6 +45,7 @@ var playState = {
         game.physics.arcade.overlap(this.player, this.enemies, this.playerDie, null, this);
         // här kommer move play funktion in kalla på den.
         this.movePlayer();
+        this.checkPlayerPos();
         if (this.nextEnemy < game.time.now) {
             var start = 4000, end = 10000, score = 100;
             var delay = Math.max(start - (start-end) * this.score/score, end);
@@ -95,6 +99,8 @@ var playState = {
         if(!enemy) {
             return;
         }
+        enemy.animations.add("walk", [1, 2, 3, 4], 8, true);
+        enemy.animations.play("walk")
         enemy.anchor.setTo(0.5, 1);
         enemy.reset(game.world.centerX, 0);
         enemy.body.gravity.y = 500;
@@ -126,6 +132,7 @@ var playState = {
             return;
         }
         console.log("spelaren dör");
+        this.particleBurst()
         this.deathfx.play()
         this.player.kill();
         // en delay på ett par sekunder
@@ -133,5 +140,22 @@ var playState = {
         setTimeout(function (){
             game.state.start("menu")
             }, 5000)
+    },
+    checkPlayerPos: function (){
+        if(this.player.y > 600){
+            this.playerDie()
+        } else if(this.player.y < 0){
+            this.playerDie()
+        }
+    },
+    particleBurst: function () {
+        emitter.x = this.player.x;
+        emitter.y = this.player.y;
+        emitter.start(true, 4000, null, 10);
+        //  And 2 seconds later we'll destroy the emitter
+        game.time.events.add(2000, this.destroyEmitter, this);
+        },
+        destroyEmitter: function () {
+        emitter.destroy();
     }
 };

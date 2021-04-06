@@ -10,13 +10,14 @@ var loadState = {
         game.load.spritesheet('mute', 'assets/img/muteButton.png', 28, 22);
         game.load.spritesheet('player', 'assets/img/player2.png', 20, 20);
         game.load.image("background", "assets/img/background.png")
-        game.load.image("enemy", "assets/img/enemy.png")
+        game.load.spritesheet("enemy", "assets/img/enemy.png", 20, 20)
         game.load.image("coin", "assets/img/coin.png")
         game.load.image("wallH", "assets/img/HorizontalWall.png")
         game.load.image("wallV", "assets/img/VerticalWall.png")
         game.load.audio("coinSound", ["assets/sound/coin.mp3", "assets/sound/coin.ogg"])
         game.load.audio("deathSound", ["assets/sound/death.mp3", "assets/sound/death.ogg"])
         game.load.audio("jumpSound", ["assets/sound/Jump.mp3", "assets/sound/Jump.ogg"])
+        game.load.image("explosion", "assets/img/explode.png")
     },
     create: function() {
         game.state.start('menu');
