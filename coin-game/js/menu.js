@@ -15,6 +15,8 @@ var menuState = {
         var upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
         upKey.onDown.addOnce(this.start, this);
         muteButton = game.add.button(game.world.centerX -10, 100, 'mute', this.muteAudio, this, currentFrame)
+        this.backgroundAudio = game.add.audio("backgroundMusic")
+        this.backgroundAudio.play()
     },
     start: function() {
         game.state.start('play');
@@ -24,10 +26,12 @@ var menuState = {
             currentFrame = 1
             muteButton.setFrames(1)
             this.mute = true
+            this.backgroundAudio.pause()
         } else if(currentFrame === 1){
             currentFrame = 0
             muteButton.setFrames(0)
             this.mute = false
+            this.backgroundAudio.resume()
         }
     }
 };

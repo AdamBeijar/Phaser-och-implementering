@@ -18,6 +18,7 @@ var loadState = {
         game.load.audio("deathSound", ["assets/sound/death.mp3", "assets/sound/death.ogg"])
         game.load.audio("jumpSound", ["assets/sound/Jump.mp3", "assets/sound/Jump.ogg"])
         game.load.image("explosion", "assets/img/explode.png")
+        game.load.audio("backgroundMusic", ["assets/sound/background.mp3", "assets/sound/background.ogg"])
     },
     create: function() {
         game.state.start('menu');
